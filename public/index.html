@@ -25,6 +25,33 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <script type="text/javascript">
+      function openwindow(Adress) {
+        MyWindow = window.open(
+          Adress,
+          "Second window",
+          "width=480,height=600,left=100,top=200"
+        );
+        myWindow.focus();
+      }
+
+      function GrafStat_Form1_Validator(theForm) {
+        var OKSelected = false;
+        {
+          if (theForm.OK[1].checked) OKSelected = true;
+        }
+        if (!OKSelected) {
+          alert(
+            unescape(
+              " Best%E4tigen Sie unten im Formular, dass der Fragebogen fertig ist oder f%FCllen Sie ihn weiter aus. \n"
+            )
+          );
+          return false;
+        }
+        return true;
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
