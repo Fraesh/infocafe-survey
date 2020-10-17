@@ -36,7 +36,7 @@ export const Event = ({ data, day }) => {
     >
       {live ? (
         <div
-          className={`sm:px-3 py-1 sm:w-32 bg-red-600  text-white font-semibold transition-colors ease-in-out duration-100 `}
+          className={`px-3 py-1 sm:w-32 bg-red-600  text-white font-semibold transition-colors ease-in-out duration-100 `}
         >
           <span>{"JETZT LIVE!"}</span>
         </div>
