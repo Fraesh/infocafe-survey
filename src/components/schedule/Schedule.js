@@ -8,7 +8,7 @@ export const Schedule = ({ data }) => {
       <Heading>Wöchentliche Angebote</Heading>
       <div
         className="grid gap-4"
-        style={{ gridTemplateColumns: "repeat(auto-fill,minmax(400px, 1fr))" }}
+        style={{ gridTemplateColumns: "repeat(auto-fit,minmax(350px, 1fr))" }}
       >
         {data.map((day, i) => {
           return <Day data={day} index={i} />;
