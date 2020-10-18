@@ -52,43 +52,63 @@ export const Form = () => {
         heading="Wann habt ihr unter der Woche Zeit euch etwas
                 anzuschauen?"
       >
-        <div
-          className="grid gap-2  justify-items-center items-center mt-10"
-          style={{ gridTemplateColumns: "repeat(8, 1fr)" }}
-        >
-          <input type="radio" name="F4" value="0" />
-          <input type="radio" name="F4" value="1" />
-          <input type="radio" name="F4" value="2" />
-          <input type="radio" name="F4" value="3" />
-          <input type="radio" name="F4" value="4" />
-          <input type="radio" name="F4" value="5" />
-          <input type="radio" name="F4" value="6" />
-          <input type="radio" name="F4" value="7" />
-          <span className="font-semibold">13 Uhr</span>
-          <span className="font-semibold">14 Uhr</span>
-          <span className="font-semibold">15 Uhr</span>
-          <span className="font-semibold">16 Uhr</span>
-          <span className="font-semibold">17 Uhr</span>
-          <span className="font-semibold">18 Uhr</span>
-          <span className="font-semibold">19 Uhr</span>
-          <span className="font-semibold">20 Uhr</span>
+        <div className="flex flex-wrap mt-10 w-full ">
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="0" />
+            <span className="font-semibold">13 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="1" />
+            <span className="font-semibold">14 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="2" />
+            <span className="font-semibold">15 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="3" />
+            <span className="font-semibold">16 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="4" />
+            <span className="font-semibold">17 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="5" />
+            <span className="font-semibold">18 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="6" />
+            <span className="font-semibold">19 Uhr</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F4" value="7" />
+            <span className="font-semibold">20 Uhr</span>
+          </div>
         </div>
       </Section>
       <Section color="orange" inverted heading="Und an welchen Wochentagen??">
-        <div
-          className="grid gap-2  justify-items-center items-center mt-10"
-          style={{ gridTemplateColumns: "repeat(5, 1fr)" }}
-        >
-          <input type="radio" name="F5" value="0" />
-          <input type="radio" name="F5" value="1" />
-          <input type="radio" name="F5" value="2" />
-          <input type="radio" name="F5" value="3" />
-          <input type="radio" name="F5" value="4" />
-          <span className="font-semibold">Montag</span>
-          <span className="font-semibold">Dienstag</span>
-          <span className="font-semibold">Mittwoch</span>
-          <span className="font-semibold">Donnerstag</span>
-          <span className="font-semibold">Freitag</span>
+        <div className="flex flex-wrap mt-10 w-full ">
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F5" value="0" />
+            <span className="font-semibold">Montag</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F5" value="1" />
+            <span className="font-semibold">Dienstag</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F5" value="2" />
+            <span className="font-semibold">Mittwoch</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F5" value="3" />
+            <span className="font-semibold">Donnerstag</span>
+          </div>
+          <div className="flex flex-col items-center mx-4 my-2">
+            <input type="radio" name="F5" value="4" />
+            <span className="font-semibold">Freitag</span>
+          </div>
         </div>
       </Section>
       <Section color="red" heading="ICH HAB EINEN VORSCHLAG!!!">

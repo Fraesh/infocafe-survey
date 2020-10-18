@@ -50,19 +50,19 @@ export const Event = ({ data, day }) => {
       <div
         className={`ml-4 p-1 group-hover:text-${
           live ? "red" : c
-        }-200 transition-colors ease-in-out duration-100`}
+        }-200 transition-colors ease-in-out duration-100 flex items-center`}
       >
         {title}
       </div>
       <div
-        className={`py-1 px-4 text-gray-500 text-right flex-1 group-hover:hidden`}
+        className={`py-1 px-4 text-gray-500 justify-end flex-1 group-hover:hidden flex items-center`}
       >
         {startTime} - {endTime}
       </div>
       <div
         className={`py-1 px-4 text-${
           live ? "red" : c
-        }-200 text-right flex-1 hidden group-hover:block`}
+        }-200 justify-end flex-1 hidden group-hover:flex items-center`}
       >
         ➜
       </div>
