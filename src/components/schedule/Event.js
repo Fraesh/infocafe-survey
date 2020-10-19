@@ -13,7 +13,7 @@ export const Event = ({ data, day }) => {
   const dayIndex = today.getDay();
 
   let live = false;
-  if (startTime === "0:00") debugger;
+
   if (dayIndex === day) {
     const [startHour, startMinutes] = startTime.split(":");
     const [endHour, endMinutes] = endTime.split(":");
@@ -55,7 +55,7 @@ export const Event = ({ data, day }) => {
         {title}
       </div>
       <div
-        className={`py-1 px-4 text-gray-500 justify-end flex-1 group-hover:hidden flex items-center`}
+        className={`py-1 px-4 text-gray-500 justify-end flex-1 group-hover:hidden flex items-center whitespace-no-wrap`}
       >
         {startTime} - {endTime}
       </div>
