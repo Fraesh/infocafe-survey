@@ -24,7 +24,8 @@ export const scheduleData = [
         to: "https://infocafe.org",
       },
       {
-        time: "10:00 - 12:00",
+        startTime: "15:00",
+        endTime: "17:00",
         title: "Jonas suckt bei celeste",
         institution: "institution3",
         to: "twitch.com",
