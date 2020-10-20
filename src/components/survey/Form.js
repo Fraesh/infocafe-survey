@@ -1,133 +1,118 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heading } from "../Heading";
 import { Section } from "./Section";
+import { gql } from "@apollo/client";
+import { useMutation, useQuery } from "react-apollo";
+import { TextQuestion } from "./TextQuestion";
+import { MultilineQuestion } from "./MultilineQuestion";
+import { MultiSelectQuestion } from "./MultiSelectQuestion";
+import { SelectQuestion } from "./SelectQuestion";
+
+const UMFRAGEN = gql`
+  {
+    umfragen {
+      edges {
+        node {
+          title
+          databaseId
+          umfrageMeta {
+            options
+            index
+            color
+            type
+          }
+        }
+      }
+    }
+  }
+`;
+
+const CREATE_SUBMISSION = gql`
+  mutation CreateSubmission($id: Int!, $answer: String!) {
+    createSubmission(
+      input: { clientMutationId: "1", id: $id, answer: $answer }
+    ) {
+      success
+    }
+  }
+`;
 
 export const Form = () => {
+  const { loading, error, data } = useQuery(UMFRAGEN);
+  const [createSubmission] = useMutation(CREATE_SUBMISSION);
+
+  const [state, setState] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const surData = data ? formatData(data) : [];
+
+  const onChange = (id, value) => {
+    setState({ ...state, [id]: value });
+  };
+
+  const onSubmit = () => {
+    if (submitted) return;
+    setSubmitted(true);
+    Object.entries(state).forEach(([id, answer]) => {
+      createSubmission({ variables: { id: parseInt(id), answer } });
+    });
+  };
+
   return (
-    <form
-      action="http://www.grafstat.de/php-dsp/phps/gsdaten.php"
-      method="post"
-      id="umfrage"
-      onsubmit="return GrafStat_Form1_Validator(this)"
-      name="GrafStat_Form1"
-    >
+    <>
       <Heading className="max-w-screen-lg mx-auto sm:mt-20 p-2">
         Was wollt Ihr?
       </Heading>
-      <Section
-        color="blue"
-        heading="Wo würdest du dir Content von uns anschauen?"
-      >
-        <div
-          className="grid gap-2 items-center mt-2"
-          style={{ gridTemplateColumns: "auto 1fr" }}
-        >
-          <input className="" type="checkbox" name="F1[]" value="0" />
-          <span>YouTube</span>
-          <input type="checkbox" name="F1[]" value="1" />
-          <span>Twitch</span>
-          <input type="checkbox" name="F1[]" value="2" />
-          <span>Instagram</span>
-          <input type="checkbox" name="F1[]" value="3" />
-          <span>Etwas Anderes</span>
-        </div>
-      </Section>
-      <Section color="yellow" heading="Was anderes?">
-        <input
-          className="mt-2 text-gray-800 rounded-md p-2 w-full bg-yellow-100"
-          type="text"
-          maxlength="250"
-          name="F2"
-        />
-      </Section>
-      <Section color="pink" heading="Auf welchen Content hättet ihr Lust?">
-        <textarea
-          className="mt-2 text-gray-800 w-full rounded-md p-2 bg-pink-100"
-          name="F3"
-          rows="4"
-        ></textarea>
-      </Section>
-      <Section
-        color="green"
-        heading="Wann habt ihr unter der Woche Zeit euch etwas
-                anzuschauen?"
-      >
-        <div className="flex flex-wrap mt-10 w-full ">
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="0" />
-            <span className="font-semibold">13 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="1" />
-            <span className="font-semibold">14 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="2" />
-            <span className="font-semibold">15 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="3" />
-            <span className="font-semibold">16 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="4" />
-            <span className="font-semibold">17 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="5" />
-            <span className="font-semibold">18 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="6" />
-            <span className="font-semibold">19 Uhr</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F4" value="7" />
-            <span className="font-semibold">20 Uhr</span>
-          </div>
-        </div>
-      </Section>
-      <Section color="orange" inverted heading="Und an welchen Wochentagen??">
-        <div className="flex flex-wrap mt-10 w-full ">
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F5" value="0" />
-            <span className="font-semibold">Montag</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F5" value="1" />
-            <span className="font-semibold">Dienstag</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F5" value="2" />
-            <span className="font-semibold">Mittwoch</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F5" value="3" />
-            <span className="font-semibold">Donnerstag</span>
-          </div>
-          <div className="flex flex-col items-center mx-4 my-2">
-            <input type="radio" name="F5" value="4" />
-            <span className="font-semibold">Freitag</span>
-          </div>
-        </div>
-      </Section>
-      <Section color="red" heading="ICH HAB EINEN VORSCHLAG!!!">
-        <input
-          className="mt-2 w-full text-gray-800  rounded-md p-2 bg-red-100"
-          type="text"
-          maxlength="250"
-          name="F6"
-        />
-      </Section>
-      <div className="max-w-screen-lg pt-6 pb-12 px-6 m-auto">
+
+      {surData.map((q) => {
+        switch (q.type) {
+          case "Text":
+            return <TextQuestion onChange={onChange} {...q} />;
+          case "Langer Text":
+            return <MultilineQuestion onChange={onChange} {...q} />;
+          case "Auswahl":
+            return (
+              <SelectQuestion onChange={onChange} value={state[q.id]} {...q} />
+            );
+          case "Mehrfachauswahl":
+            return (
+              <MultiSelectQuestion
+                onChange={onChange}
+                value={state[q.id]}
+                {...q}
+              />
+            );
+        }
+      })}
+
+      <div className="max-w-screen-lg pt-6 pb-12 px-6 m-auto flex justify-end">
         <button
           type="submit"
           name="last"
+          onClick={onSubmit}
+          disabled={submitted}
           className="text-2xl text-blue-600 font-bold hover:text-blue-400"
         >
-          Abschicken
+          {submitted ? "Vielen Dank!" : "Abschicken"}
         </button>
       </div>
-    </form>
+    </>
   );
+};
+
+const formatData = (data) => {
+  const d = data.umfragen.edges;
+
+  return d
+    .map((e) => {
+      const options = (e.node.umfrageMeta.options || "").split(/\r?\n/);
+      return {
+        title: e.node.title,
+        id: e.node.databaseId,
+        type: e.node.umfrageMeta.type,
+        color: e.node.umfrageMeta.color,
+        index: e.node.umfrageMeta.index,
+        options,
+      };
+    })
+    .sort((a, b) => (a.index || 0) - (b.index || 0));
 };
