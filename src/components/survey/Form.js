@@ -59,7 +59,7 @@ export const Form = () => {
 
   return (
     <>
-      <Heading className="max-w-screen-lg mx-auto sm:mt-20 p-2">
+      <Heading className="max-w-screen-lg mx-auto sm:mt-20 p-2" id="umfrage">
         Was wollt Ihr?
       </Heading>
 
