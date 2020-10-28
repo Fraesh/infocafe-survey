@@ -28,6 +28,11 @@ export const Calender = () => {
   const { loading, error, data } = useQuery(VERANSTALTUNGEN);
 
   const calData = data ? formatData(data) : [];
+
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
   return (
     <div
       className="max-w-screen-lg px-2 pb-10 m-auto text-sm sm:mt-20 "
@@ -35,7 +40,7 @@ export const Calender = () => {
     >
       <Heading className="mb-8">Veranstaltungen</Heading>
       {calData
-        .filter((d) => d.date > new Date())
+        .filter((d) => d.date > yesterday)
         .map((event) => {
           return <Event data={event} />;
         })}

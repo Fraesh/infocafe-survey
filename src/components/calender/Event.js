@@ -46,7 +46,7 @@ export const Event = ({ data }) => {
       className={`flex w-full my-4 shadow-sm border-l-4 border-${c}-600 sm:border-none group`}
     >
       <div
-        className={` flex-col p-3 text-${c}-100 bg-${c}-600 items-center hidden sm:flex `}
+        className={` flex-col p-3 text-${c}-100 bg-${c}-600 items-center  justify-center hidden sm:flex `}
         style={{ width: "7rem" }}
       >
         <div className={`uppercase text-xs font-semibold leading-none`}>
