@@ -27,11 +27,14 @@ const VERANSTALTUNGEN = gql`
 export const Calender = () => {
   const { loading, error, data } = useQuery(VERANSTALTUNGEN);
 
-  const calData = data ? formatData(data) : [];
+  let calData = data ? formatData(data) : undefined;
 
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
+
+  if (!calData) return null;
+  calData = calData.filter((d) => d.date > yesterday);
 
   return (
     <div
@@ -39,11 +42,14 @@ export const Calender = () => {
       id="veranstaltungen"
     >
       <Heading className="mb-8">Veranstaltungen</Heading>
-      {calData
-        .filter((d) => d.date > yesterday)
-        .map((event) => {
+      {calData.length > 0 &&
+        calData.map((event) => {
           return <Event data={event} />;
         })}
+
+      {calData.length === 0 && (
+        <div>Zur Zeit stehen keine Veranstaltungen an.</div>
+      )}
     </div>
   );
 };
