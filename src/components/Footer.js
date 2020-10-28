@@ -18,7 +18,7 @@ export const Footer = () => {
               Stadt Neu-Isenburg
             </a>
           </div>
-          <div>Reihe 2</div>
+
           <div className="grid grid-cols-1 gap-2">
             <Link className="hover:text-blue-400" to="impressum">
               Impressum

@@ -15,6 +15,7 @@ export const Event = ({ data, day }) => {
   let live = false;
 
   if (dayIndex === day) {
+    debugger;
     const [startHour, startMinutes] = startTime.split(":");
     const [endHour, endMinutes] = endTime.split(":");
     const st = parseInt(startHour) * 60 + parseInt(startMinutes);

@@ -36,7 +36,7 @@ export const Schedule = () => {
         style={{ gridTemplateColumns: "repeat(auto-fit,minmax(350px, 1fr))" }}
       >
         {schData.map((day, i) => {
-          return <Day data={day} index={i} />;
+          return <Day data={day} index={tage.indexOf(day.name)} />;
         })}
       </div>
     </div>
